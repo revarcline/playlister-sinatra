@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe "Playlister Basics" do
-  let(:artist_name) { "Person with a Face" }
-  let(:genre_name) { "New Age Garbage" }
-  let(:song_name) { "That One with the Guitar" }
+describe 'Playlister Basics' do
+  let(:artist_name) { 'Person with a Face' }
+  let(:genre_name) { 'New Age Garbage' }
+  let(:song_name) { 'That One with the Guitar' }
 
   before do
     @song = Song.create(name: song_name)
@@ -12,21 +12,21 @@ describe "Playlister Basics" do
 
     @song.song_genres.create(genre: @genre)
     @song.artist = @artist
-  
+
     @song.save
   end
 
-  describe "index pages" do
-    describe "/songs" do
+  describe 'index pages' do
+    describe '/songs' do
       before do
-        visit "/songs"
+        visit '/songs'
       end
 
       it 'responds with a 200 status code' do
         expect(page.status_code).to eq(200)
       end
 
-      it "displays a list of songs" do
+      it 'displays a list of songs' do
         expect(page).to have_content(song_name)
       end
 
@@ -35,16 +35,16 @@ describe "Playlister Basics" do
       end
     end
 
-    describe "/artists" do
+    describe '/artists' do
       before do
-        visit "/artists"
+        visit '/artists'
       end
 
       it 'responds with a 200 status code' do
         expect(page.status_code).to eq(200)
       end
 
-      it "displays a list of artists" do
+      it 'displays a list of artists' do
         expect(page).to have_content(artist_name)
       end
 
@@ -53,16 +53,16 @@ describe "Playlister Basics" do
       end
     end
 
-    describe "/genres" do
+    describe '/genres' do
       before do
-        visit "/genres"
+        visit '/genres'
       end
 
       it 'responds with a 200 status code' do
         expect(page.status_code).to eq(200)
       end
 
-      it "displays a list of genres" do
+      it 'displays a list of genres' do
         expect(page).to have_content(genre_name)
       end
 
@@ -72,8 +72,8 @@ describe "Playlister Basics" do
     end
   end
 
-  describe "show pages" do
-    describe "/songs/:slug" do
+  describe 'show pages' do
+    describe '/songs/:slug' do
       before do
         visit "/songs/#{@song.slug}"
       end
@@ -99,7 +99,7 @@ describe "Playlister Basics" do
       end
     end
 
-    describe "/artists/:slug" do
+    describe '/artists/:slug' do
       before do
         visit "/artists/#{@artist.slug}"
       end
@@ -125,7 +125,7 @@ describe "Playlister Basics" do
       end
     end
 
-    describe "/genres/:slug" do
+    describe '/genres/:slug' do
       before do
         visit "/genres/#{@genre.slug}"
       end

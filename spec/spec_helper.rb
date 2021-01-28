@@ -1,4 +1,4 @@
-ENV["SINATRA_ENV"] = "test"
+ENV['SINATRA_ENV'] = 'test'
 
 require_relative '../config/environment'
 require 'rack/test'
@@ -7,11 +7,10 @@ require 'capybara/dsl'
 
 begin
   fi_check_migration
-rescue ActiveRecord::PendingMigrationError => err
-  STDERR.puts err
+rescue ActiveRecord::PendingMigrationError => e
+  warn e
   exit 1
 end
-
 
 ActiveRecord::Base.logger = nil
 
@@ -20,6 +19,7 @@ RSpec.configure do |config|
   config.filter_run :focus
   config.include Rack::Test::Methods
   config.include Capybara::DSL
+  config.tty = true
   DatabaseCleaner.strategy = :truncation
 
   config.before do
